@@ -1,0 +1,4 @@
+Manifest-Version: 1.0
+Main-Class: lesson14_Code_Conventions_Password_Manager.UA.BuraOS.Passw
+ ordManager.Print
+
