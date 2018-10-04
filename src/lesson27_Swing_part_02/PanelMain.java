@@ -12,8 +12,8 @@ import javax.swing.border.*;
  * @author unknown
  */
 @SuppressWarnings("FieldCanBeLocal")
-public class PanelMain extends JPanel {
-    public PanelMain() {
+class PanelMain extends JPanel {
+    PanelMain() {
         initComponents();
     }
 
@@ -49,11 +49,11 @@ public class PanelMain extends JPanel {
         //======== this ========
 
         // JFormDesigner evaluation mark
-        setBorder(new javax.swing.border.CompoundBorder(
-            new javax.swing.border.TitledBorder(new javax.swing.border.EmptyBorder(0, 0, 0, 0),
-                "JFormDesigner Evaluation", javax.swing.border.TitledBorder.CENTER,
-                javax.swing.border.TitledBorder.BOTTOM, new java.awt.Font("Dialog", java.awt.Font.BOLD, 12),
-                java.awt.Color.red), getBorder())); addPropertyChangeListener(new java.beans.PropertyChangeListener(){public void propertyChange(java.beans.PropertyChangeEvent e){if("border".equals(e.getPropertyName()))throw new RuntimeException();}});
+//        setBorder(new javax.swing.border.CompoundBorder(
+//            new javax.swing.border.TitledBorder(new javax.swing.border.EmptyBorder(0, 0, 0, 0),
+//                "JFormDesigner Evaluation", javax.swing.border.TitledBorder.CENTER,
+//                javax.swing.border.TitledBorder.BOTTOM, new java.awt.Font("Dialog", java.awt.Font.BOLD, 12),
+//                java.awt.Color.red), getBorder())); addPropertyChangeListener(new java.beans.PropertyChangeListener(){public void propertyChange(java.beans.PropertyChangeEvent e){if("border".equals(e.getPropertyName()))throw new RuntimeException();}});
 
         setLayout(new GridBagLayout());
         ((GridBagLayout)getLayout()).columnWidths = new int[] {0, 0};
@@ -151,7 +151,8 @@ public class PanelMain extends JPanel {
             {
 
                 //---- list1 ----
-                list1.setModel(new AbstractListModel<String>() {
+//                list1.setModel(new AbstractListModel<String>() {
+                list1.setModel(new AbstractListModel<>() {
                     String[] values = {
                         "john@home.de",
                         "mary@newyork.com"
@@ -227,7 +228,7 @@ public class PanelMain extends JPanel {
             new Insets(0, 0, 0, 0), 0, 0));
 
         //---- buttonGroup1 ----
-        ButtonGroup buttonGroup1 = new ButtonGroup();
+        var buttonGroup1 = new ButtonGroup();
         buttonGroup1.add(radioButton1);
         buttonGroup1.add(radioButton2);
         buttonGroup1.add(radioButton3);
