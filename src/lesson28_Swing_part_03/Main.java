@@ -14,9 +14,9 @@ public class Main {
         mainWindow = new MainForm(500, 500);
     }
 
-    public static void setImage(URL url) {
+    static void setImage(URL url) {
         try {
-            ImageIO.read(url);
+            image = ImageIO.read(url);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -24,7 +24,7 @@ public class Main {
 
     public static void setImage(File file) {
         try {
-            ImageIO.read(file);
+            image = ImageIO.read(file);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -38,7 +38,7 @@ public class Main {
         }
     }
 
-    public static BufferedImage getImage() {
+    static BufferedImage getImage() {
         return image;
     }
 

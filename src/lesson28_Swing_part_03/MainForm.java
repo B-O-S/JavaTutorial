@@ -6,6 +6,8 @@ package lesson28_Swing_part_03;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.net.MalformedURLException;
+import java.net.URL;
 import javax.swing.*;
 import javax.swing.border.*;
 
@@ -23,6 +25,21 @@ class MainForm extends JFrame {
     }
 
     private void button1ActionPerformed(ActionEvent e) {
+        try {
+            Main.setImage(new URL(textArea1.getText()));
+        } catch (Exception e1) {
+//            e1.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Invalid URL or no Internet connection.");
+        }
+    }
+
+    private void button3ActionPerformed(ActionEvent e) {
+        if (Main.getImage() == null) {
+            JOptionPane.showMessageDialog(null, "No images loaded.");
+            return;
+        }
+        imageLabel.setIcon(new ImageIcon(Main.getImage()));
+        imageLabel.updateUI();
 
     }
 
@@ -45,6 +62,8 @@ class MainForm extends JFrame {
         button3 = new JButton();
         label2 = new JLabel();
         comboBox1 = new JComboBox<>();
+        scrollPane2 = new JScrollPane();
+        imageLabel = new JLabel();
 
         //======== this ========
         var contentPane = getContentPane();
@@ -86,15 +105,15 @@ class MainForm extends JFrame {
             {
 
                 // JFormDesigner evaluation mark
-                panel1.setBorder(new javax.swing.border.CompoundBorder(
-                    new javax.swing.border.TitledBorder(new javax.swing.border.EmptyBorder(0, 0, 0, 0),
-                        "JFormDesigner Evaluation", javax.swing.border.TitledBorder.CENTER,
-                        javax.swing.border.TitledBorder.BOTTOM, new java.awt.Font("Dialog", java.awt.Font.BOLD, 12),
-                        java.awt.Color.red), panel1.getBorder())); panel1.addPropertyChangeListener(e -> {if("border".equals(e.getPropertyName()))throw new RuntimeException();});
+//                panel1.setBorder(new javax.swing.border.CompoundBorder(
+//                    new javax.swing.border.TitledBorder(new javax.swing.border.EmptyBorder(0, 0, 0, 0),
+//                        "JFormDesigner Evaluation", javax.swing.border.TitledBorder.CENTER,
+//                        javax.swing.border.TitledBorder.BOTTOM, new java.awt.Font("Dialog", java.awt.Font.BOLD, 12),
+//                        java.awt.Color.red), panel1.getBorder())); panel1.addPropertyChangeListener(new java.beans.PropertyChangeListener(){public void propertyChange(java.beans.PropertyChangeEvent e){if("border".equals(e.getPropertyName()))throw new RuntimeException();}});
 
                 panel1.setLayout(new GridBagLayout());
                 ((GridBagLayout)panel1.getLayout()).columnWidths = new int[] {15, 75, 105, 227, 105, 10, 0};
-                ((GridBagLayout)panel1.getLayout()).rowHeights = new int[] {15, 27, 0, 197, 5, 0};
+                ((GridBagLayout)panel1.getLayout()).rowHeights = new int[] {15, 27, 21, 197, 5, 0};
                 ((GridBagLayout)panel1.getLayout()).columnWeights = new double[] {0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 1.0E-4};
                 ((GridBagLayout)panel1.getLayout()).rowWeights = new double[] {0.0, 0.0, 0.0, 1.0, 0.0, 1.0E-4};
 
@@ -135,12 +154,13 @@ class MainForm extends JFrame {
             {
                 panel2.setLayout(new GridBagLayout());
                 ((GridBagLayout)panel2.getLayout()).columnWidths = new int[] {15, 93, 105, 0, 0, 105, 8, 0};
-                ((GridBagLayout)panel2.getLayout()).rowHeights = new int[] {15, 0, 0, 0, 5, 0};
+                ((GridBagLayout)panel2.getLayout()).rowHeights = new int[] {15, 0, 21, 0, 5, 0};
                 ((GridBagLayout)panel2.getLayout()).columnWeights = new double[] {0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0E-4};
                 ((GridBagLayout)panel2.getLayout()).rowWeights = new double[] {0.0, 0.0, 0.0, 1.0, 0.0, 1.0E-4};
 
                 //---- button3 ----
                 button3.setText("View");
+                button3.addActionListener(this::button3ActionPerformed);
                 panel2.add(button3, new GridBagConstraints(2, 1, 1, 1, 0.0, 0.0,
                     GridBagConstraints.CENTER, GridBagConstraints.BOTH,
                     new Insets(0, 0, 5, 5), 0, 0));
@@ -157,6 +177,14 @@ class MainForm extends JFrame {
                     "jpg"
                 }));
                 panel2.add(comboBox1, new GridBagConstraints(5, 1, 1, 1, 0.0, 0.0,
+                    GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+                    new Insets(0, 0, 5, 5), 0, 0));
+
+                //======== scrollPane2 ========
+                {
+                    scrollPane2.setViewportView(imageLabel);
+                }
+                panel2.add(scrollPane2, new GridBagConstraints(1, 3, 5, 1, 0.0, 0.0,
                     GridBagConstraints.CENTER, GridBagConstraints.BOTH,
                     new Insets(0, 0, 5, 5), 0, 0));
             }
@@ -188,5 +216,7 @@ class MainForm extends JFrame {
     private JButton button3;
     private JLabel label2;
     private JComboBox<String> comboBox1;
+    private JScrollPane scrollPane2;
+    private JLabel imageLabel;
     // JFormDesigner - End of variables declaration  //GEN-END:variables
 }

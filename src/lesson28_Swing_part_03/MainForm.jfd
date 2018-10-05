@@ -16,7 +16,7 @@ new FormModel {
 				name: "tabbedPane1"
 				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class java.awt.GridBagLayout ) {
 					"$columnSpecs": "10, 70, 100, 222:1.0, 100, 10"
-					"$rowSpecs": "10, 22, 0, 192:1.0, 5"
+					"$rowSpecs": "10, 22, 16, 192:1.0, 5"
 					"$hGap": 5
 					"$vGap": 5
 					"$alignLeft": true
@@ -62,7 +62,7 @@ new FormModel {
 				} )
 				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class java.awt.GridBagLayout ) {
 					"$columnSpecs": "10, 88, 100, 0:1.0, 0, 100, 8"
-					"$rowSpecs": "10, 0, 0, 0:1.0, 5"
+					"$rowSpecs": "10, 0, 16, 0:1.0, 5"
 					"$hGap": 5
 					"$vGap": 5
 					"$alignLeft": true
@@ -72,6 +72,7 @@ new FormModel {
 					add( new FormComponent( "javax.swing.JButton" ) {
 						name: "button3"
 						"text": "View"
+						addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "button3ActionPerformed", true ) )
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
 						"gridx": 2
 						"gridy": 1
@@ -93,6 +94,16 @@ new FormModel {
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
 						"gridx": 5
 						"gridy": 1
+					} )
+					add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+						name: "scrollPane2"
+						add( new FormComponent( "javax.swing.JLabel" ) {
+							name: "imageLabel"
+						} )
+					}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+						"gridx": 1
+						"gridy": 3
+						"gridwidth": 5
 					} )
 				}, new FormLayoutConstraints( null ) {
 					"title": "Viewing Image"
