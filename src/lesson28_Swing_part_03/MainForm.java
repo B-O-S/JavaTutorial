@@ -5,6 +5,7 @@
 package lesson28_Swing_part_03;
 
 import java.awt.*;
+import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.border.*;
 
@@ -19,6 +20,10 @@ class MainForm extends JFrame {
         setResizable(true);
         setLocationRelativeTo(null);
         setVisible(true);
+    }
+
+    private void button1ActionPerformed(ActionEvent e) {
+
     }
 
     private void initComponents() {
@@ -39,7 +44,7 @@ class MainForm extends JFrame {
         panel2 = new JPanel();
         button3 = new JButton();
         label2 = new JLabel();
-        comboBox1 = new JComboBox();
+        comboBox1 = new JComboBox<>();
 
         //======== this ========
         var contentPane = getContentPane();
@@ -67,7 +72,7 @@ class MainForm extends JFrame {
                 menu2.setText("Options");
 
                 //---- menuItem3 ----
-                menuItem3.setText("Exit Program");
+                menuItem3.setText("Exit Programm");
                 menu2.add(menuItem3);
             }
             menuBar1.add(menu2);
@@ -81,11 +86,11 @@ class MainForm extends JFrame {
             {
 
                 // JFormDesigner evaluation mark
-//                panel1.setBorder(new javax.swing.border.CompoundBorder(
-//                    new javax.swing.border.TitledBorder(new javax.swing.border.EmptyBorder(0, 0, 0, 0),
-//                        "JFormDesigner Evaluation", javax.swing.border.TitledBorder.CENTER,
-//                        javax.swing.border.TitledBorder.BOTTOM, new java.awt.Font("Dialog", java.awt.Font.BOLD, 12),
-//                        java.awt.Color.red), panel1.getBorder())); panel1.addPropertyChangeListener(new java.beans.PropertyChangeListener(){public void propertyChange(java.beans.PropertyChangeEvent e){if("border".equals(e.getPropertyName()))throw new RuntimeException();}});
+                panel1.setBorder(new javax.swing.border.CompoundBorder(
+                    new javax.swing.border.TitledBorder(new javax.swing.border.EmptyBorder(0, 0, 0, 0),
+                        "JFormDesigner Evaluation", javax.swing.border.TitledBorder.CENTER,
+                        javax.swing.border.TitledBorder.BOTTOM, new java.awt.Font("Dialog", java.awt.Font.BOLD, 12),
+                        java.awt.Color.red), panel1.getBorder())); panel1.addPropertyChangeListener(e -> {if("border".equals(e.getPropertyName()))throw new RuntimeException();});
 
                 panel1.setLayout(new GridBagLayout());
                 ((GridBagLayout)panel1.getLayout()).columnWidths = new int[] {15, 75, 105, 227, 105, 10, 0};
@@ -95,6 +100,7 @@ class MainForm extends JFrame {
 
                 //---- button1 ----
                 button1.setText("Get Image");
+                button1.addActionListener(this::button1ActionPerformed);
                 panel1.add(button1, new GridBagConstraints(2, 1, 1, 1, 0.0, 0.0,
                     GridBagConstraints.CENTER, GridBagConstraints.BOTH,
                     new Insets(0, 0, 5, 5), 0, 0));
@@ -114,6 +120,9 @@ class MainForm extends JFrame {
                 //======== scrollPane1 ========
                 {
                     scrollPane1.setViewportBorder(new EmptyBorder(5, 5, 5, 5));
+
+                    //---- textArea1 ----
+                    textArea1.setText("Enter URL here\u2026");
                     scrollPane1.setViewportView(textArea1);
                 }
                 panel1.add(scrollPane1, new GridBagConstraints(1, 3, 4, 1, 0.0, 0.0,
@@ -141,6 +150,12 @@ class MainForm extends JFrame {
                 panel2.add(label2, new GridBagConstraints(4, 1, 1, 1, 0.0, 0.0,
                     GridBagConstraints.CENTER, GridBagConstraints.BOTH,
                     new Insets(0, 0, 5, 5), 0, 0));
+
+                //---- comboBox1 ----
+                comboBox1.setModel(new DefaultComboBoxModel<>(new String[] {
+                    "png",
+                    "jpg"
+                }));
                 panel2.add(comboBox1, new GridBagConstraints(5, 1, 1, 1, 0.0, 0.0,
                     GridBagConstraints.CENTER, GridBagConstraints.BOTH,
                     new Insets(0, 0, 5, 5), 0, 0));
@@ -172,6 +187,6 @@ class MainForm extends JFrame {
     private JPanel panel2;
     private JButton button3;
     private JLabel label2;
-    private JComboBox comboBox1;
+    private JComboBox<String> comboBox1;
     // JFormDesigner - End of variables declaration  //GEN-END:variables
 }
