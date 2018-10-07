@@ -33,8 +33,10 @@ public class Main {
     static void saveImage(File file, String format) {
         try {
             ImageIO.write(image, format, file);
-            //noinspection ResultOfMethodCallIgnored
-            file.renameTo(new File(file.getPath() + "." + format));
+            if (!file.getName().contains(".")) {
+                //noinspection ResultOfMethodCallIgnored
+                file.renameTo(new File(file.getPath() + "." + format));
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
