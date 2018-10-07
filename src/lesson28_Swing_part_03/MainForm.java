@@ -6,7 +6,6 @@ package lesson28_Swing_part_03;
 
 import java.awt.*;
 import java.awt.event.*;
-import java.net.MalformedURLException;
 import java.net.URL;
 import javax.swing.*;
 import javax.swing.border.*;
@@ -41,6 +40,31 @@ class MainForm extends JFrame {
         imageLabel.setIcon(new ImageIcon(Main.getImage()));
         imageLabel.updateUI();
 
+    }
+
+    private void menuItem3ActionPerformed(ActionEvent e) {
+        System.exit(0);
+//        String readerNames[] = ImageIO.getReaderFormatNames();
+//        System.out.println(Arrays.toString(readerNames));
+//        String writerNames[] = ImageIO.getWriterFormatNames();
+//        System.out.println(Arrays.toString(writerNames));
+    }
+
+    private void button2ActionPerformed(ActionEvent e) {
+        JFileChooser chooser = new JFileChooser();
+        int replay = chooser.showOpenDialog(null);
+        if (replay == JFileChooser.APPROVE_OPTION) {
+            Main.setImage(chooser.getSelectedFile());
+        }
+
+    }
+
+    private void menuItem2ActionPerformed(ActionEvent e) {
+        JFileChooser chooser = new JFileChooser();
+        int replay = chooser.showSaveDialog(null);
+        if (replay == JFileChooser.APPROVE_OPTION) {
+            Main.saveImage(chooser.getSelectedFile(), comboBox1.getItemAt(comboBox1.getSelectedIndex()));
+        }
     }
 
     private void initComponents() {
@@ -82,6 +106,7 @@ class MainForm extends JFrame {
 
                 //---- menuItem2 ----
                 menuItem2.setText("Save Image");
+                menuItem2.addActionListener(this::menuItem2ActionPerformed);
                 menu1.add(menuItem2);
             }
             menuBar1.add(menu1);
@@ -92,6 +117,7 @@ class MainForm extends JFrame {
 
                 //---- menuItem3 ----
                 menuItem3.setText("Exit Programm");
+                menuItem3.addActionListener(this::menuItem3ActionPerformed);
                 menu2.add(menuItem3);
             }
             menuBar1.add(menu2);
@@ -126,6 +152,7 @@ class MainForm extends JFrame {
 
                 //---- button2 ----
                 button2.setText("Select Image");
+                button2.addActionListener(this::button2ActionPerformed);
                 panel1.add(button2, new GridBagConstraints(4, 1, 1, 1, 0.0, 0.0,
                     GridBagConstraints.CENTER, GridBagConstraints.BOTH,
                     new Insets(0, 0, 5, 5), 0, 0));
@@ -173,8 +200,14 @@ class MainForm extends JFrame {
 
                 //---- comboBox1 ----
                 comboBox1.setModel(new DefaultComboBoxModel<>(new String[] {
+                    "jpeg",
+                    "jpg",
                     "png",
-                    "jpg"
+                    "gif",
+                    "tif",
+                    "tiff",
+                    "bmp",
+                    "wbmp"
                 }));
                 panel2.add(comboBox1, new GridBagConstraints(5, 1, 1, 1, 0.0, 0.0,
                     GridBagConstraints.CENTER, GridBagConstraints.BOTH,

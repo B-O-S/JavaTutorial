@@ -22,7 +22,7 @@ public class Main {
         }
     }
 
-    public static void setImage(File file) {
+    static void setImage(File file) {
         try {
             image = ImageIO.read(file);
         } catch (IOException e) {
@@ -30,9 +30,11 @@ public class Main {
         }
     }
 
-    public static void saveImage(File file, String format) {
+    static void saveImage(File file, String format) {
         try {
             ImageIO.write(image, format, file);
+            //noinspection ResultOfMethodCallIgnored
+            file.renameTo(new File(file.getPath() + "." + format));
         } catch (IOException e) {
             e.printStackTrace();
         }

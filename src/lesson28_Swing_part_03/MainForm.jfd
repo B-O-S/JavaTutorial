@@ -34,6 +34,7 @@ new FormModel {
 					add( new FormComponent( "javax.swing.JButton" ) {
 						name: "button2"
 						"text": "Select Image"
+						addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "button2ActionPerformed", true ) )
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
 						"gridx": 4
 						"gridy": 1
@@ -87,9 +88,15 @@ new FormModel {
 					add( new FormComponent( "javax.swing.JComboBox" ) {
 						name: "comboBox1"
 						"model": new javax.swing.DefaultComboBoxModel {
-							selectedItem: "png"
-							addElement( "png" )
+							selectedItem: "jpeg"
+							addElement( "jpeg" )
 							addElement( "jpg" )
+							addElement( "png" )
+							addElement( "gif" )
+							addElement( "tif" )
+							addElement( "tiff" )
+							addElement( "bmp" )
+							addElement( "wbmp" )
 						}
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
 						"gridx": 5
@@ -119,6 +126,7 @@ new FormModel {
 					add( new FormComponent( "javax.swing.JMenuItem" ) {
 						name: "menuItem2"
 						"text": "Save Image"
+						addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "menuItem2ActionPerformed", true ) )
 					} )
 				} )
 				add( new FormContainer( "javax.swing.JMenu", new FormLayoutManager( class javax.swing.JMenu ) ) {
@@ -127,6 +135,7 @@ new FormModel {
 					add( new FormComponent( "javax.swing.JMenuItem" ) {
 						name: "menuItem3"
 						"text": "Exit Programm"
+						addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "menuItem3ActionPerformed", true ) )
 					} )
 				} )
 			}
